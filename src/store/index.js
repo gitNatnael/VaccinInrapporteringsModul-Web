@@ -2,17 +2,9 @@ import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
 import cors from "cors";
-
+import config from "../../config/default";
 Vue.use(Vuex);
 Vue.use(cors);
-
-const resource_api_delivery =
-  "http://localhost:6565/api/v1/VaccineDeliveryReport";
-const resource_api_suppliers = "http://localhost:6565/api/v1/VaccineSupplier";
-const resource_api_healtcare_provider =
-  "http://localhost:6565/api/v1/HealthCareProvider";
-
-const resource_api_inventory = "http://localhost:6565/api/v1/InventoryReport";
 
 const headers = { Accept: "application/json" };
 export default new Vuex.Store({
@@ -39,7 +31,7 @@ export default new Vuex.Store({
   actions: {
     async fetchInventoryReportList({ commit }) {
       await axios
-        .get(resource_api_inventory, headers)
+        .get(config.resource_api_inventory, headers)
         .then(res => {
           commit("SET_INVENTORY_REPORT", res.data);
         })
@@ -47,7 +39,7 @@ export default new Vuex.Store({
     },
     async fetchVaccineDeliveryReport({ commit }) {
       await axios
-        .get(resource_api_delivery, headers)
+        .get(config.resource_api_delivery, headers)
         .then(res => {
           commit("SET_DELIVERY_REPORT", res.data);
         })
@@ -55,7 +47,7 @@ export default new Vuex.Store({
     },
     async fetchVaccineSuppliersList({ commit }) {
       await axios
-        .get(resource_api_suppliers, headers)
+        .get(config.resource_api_suppliers, headers)
         .then(res => {
           commit("SET_SUPPLIERS_LIST", res.data);
         })
@@ -63,7 +55,7 @@ export default new Vuex.Store({
     },
     async fetchHealthcareProviders({ commit }) {
       await axios
-        .get(resource_api_healtcare_provider, headers)
+        .get(config.resource_api_healtcare_provider, headers)
         .then(res => {
           commit("SET_HEALTHCARE_PROVIDER", res.data);
         })

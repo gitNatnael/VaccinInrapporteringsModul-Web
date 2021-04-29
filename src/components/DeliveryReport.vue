@@ -95,7 +95,11 @@
       </b-card>
     </div>
     <div class="row m-0 mt-5" v-show="!show && ReportList.length > 0">
-      <b-table striped :fields="fields" :items="ReportList"></b-table>
+      <b-table
+        striped
+        :fields="deliveryReportTableFields"
+        :items="ReportList"
+      ></b-table>
     </div>
   </div>
 </template>
@@ -105,12 +109,10 @@ import { mapState, mapActions, mapGetters } from "vuex";
 import axios from "axios";
 import { deliveryReportTableObj } from "../Utils/functions.js";
 import { DELIVERY_REPORT_FIELDS } from "../Utils/constant.js";
-const resource_api_delivery =
-  "http://localhost:6565/api/v1/VaccineDeliveryReport";
+import config from "../../config/default";
 export default {
   name: "ReportSummary",
   data: () => ({
-    fields: DELIVERY_REPORT_FIELDS,
     deliverReportData: {
       deliveryDate: "",
       scheduledDeliveryDate: "",
@@ -137,6 +139,11 @@ export default {
     healtCareList() {
       return this.healthCareProvidersList;
     },
+    deliveryReportTableFields() {
+      return DELIVERY_REPORT_FIELDS.filter(
+        (x) => x.key !== "healthcareProvider"
+      );
+    },
   },
   methods: {
     ...mapActions(["fetchVaccineDeliveryReport"]),
@@ -148,7 +155,7 @@ export default {
       this.show = false;
 
       await axios
-        .post(resource_api_delivery, this.deliverReportData)
+        .post(config.resource_api_delivery, this.deliverReportData)
         .then((res) => {
           if (res.status === 201) {
             this.fetchVaccineDeliveryReport();

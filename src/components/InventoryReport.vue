@@ -82,7 +82,11 @@
       </b-card>
     </div>
     <div class="row m-0 mt-5" v-show="!show && InventoryReportList.length > 0">
-      <b-table striped :fields="fields" :items="InventoryReportList"></b-table>
+      <b-table
+        striped
+        :fields="inventoryTableFields"
+        :items="InventoryReportList"
+      ></b-table>
     </div>
   </div>
 </template>
@@ -92,11 +96,11 @@ import { mapState, mapActions, mapGetters } from "vuex";
 import axios from "axios";
 import { InventoryReportTableObj } from "../Utils/functions.js";
 import { INVENTORY_REPORT_FIELDS } from "../Utils/constant.js";
-const resource_api_inventory = "http://localhost:6565/api/v1/InventoryReport";
+import config from "../../config/default";
+
 export default {
   name: "ReportSummary",
   data: () => ({
-    fields: INVENTORY_REPORT_FIELDS,
     inventoryReportData: {
       inventoryReportData: "",
       VaccineSupplier: "",
@@ -123,6 +127,11 @@ export default {
     healtCareList() {
       return this.healthCareProvidersList;
     },
+    inventoryTableFields() {
+      return INVENTORY_REPORT_FIELDS.filter(
+        (x) => x.key !== "healthcareProvider"
+      );
+    },
   },
   methods: {
     ...mapActions(["fetchInventoryReportList"]),
@@ -133,7 +142,7 @@ export default {
       event.preventDefault();
       this.show = false;
       await axios
-        .post(resource_api_inventory, this.inventoryReportData)
+        .post(config.resource_api_inventory, this.inventoryReportData)
         .then((res) => {
           if (res.status === 201) {
             this.cleanFieldsInput();
