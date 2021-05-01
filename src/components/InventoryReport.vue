@@ -84,6 +84,7 @@
     <div class="row m-0 mt-5" v-show="!show && InventoryReportList.length > 0">
       <b-table
         striped
+        bordered
         :fields="inventoryTableFields"
         :items="InventoryReportList"
       ></b-table>
@@ -147,13 +148,14 @@ export default {
           if (res.status === 201) {
             this.cleanFieldsInput();
             this.fetchInventoryReportList();
-          } else
-            console.log(
-              `res.status: ${res.status}, res.statusText: ${res.statusText}`
-            );
+          } else console.log("i am status failed");
+          console.log(
+            `res.status: ${res.status}, res.statusText: ${res.statusText}`
+          );
         })
         .catch((error) => {
-          console.log(error);
+          console.log("i am catch");
+          console.log(`Error: ${error}`);
         });
     },
     onReset(event) {

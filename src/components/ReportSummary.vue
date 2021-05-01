@@ -22,24 +22,34 @@
         </b-form-checkbox>
       </b-row>
     </b-jumbotron>
-    <b-table
-      v-show="ReportList.length > 0 && showDeliveryReports"
-      striped
-      :fields="DeliveryReportTableFields"
-      :items="ReportList"
-      caption-top
-    >
-      <template #table-caption>Inleverans rapport</template>
-    </b-table>
-    <b-table
-      v-show="InventoryReportList.length > 0 && showInventoryReports"
-      striped
-      :fields="InventoryReportTableFields"
-      :items="InventoryReportList"
-      caption-top
-    >
-      <template #table-caption><p>Lagersaldo</p> </template>
-    </b-table>
+    <div class="summary-report">
+      <b-table
+        v-show="ReportList.length > 0 && showDeliveryReports"
+        striped
+        bordered
+        :fields="DeliveryReportTableFields"
+        :items="ReportList"
+        caption-top
+      >
+        <template #table-caption
+          ><span class="caption-font">Inleverans rapport</span></template
+        >
+      </b-table>
+      <b-table
+        v-show="InventoryReportList.length > 0 && showInventoryReports"
+        striped
+        bordered
+        :fields="InventoryReportTableFields"
+        :items="InventoryReportList"
+        caption-top
+      >
+        <template #table-caption
+          ><span class="caption-font">
+            Lagersaldo
+          </span></template
+        >
+      </b-table>
+    </div>
   </div>
 </template>
 
@@ -104,6 +114,11 @@ export default {
 .form-check-label {
   margin-left: 1.5rem;
 }
-caption {
+.summary-report {
+  padding-bottom: 55px;
+}
+.caption-font {
+  color: black !important;
+  font-size: 20px !important;
 }
 </style>

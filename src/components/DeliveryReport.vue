@@ -97,6 +97,7 @@
     <div class="row m-0 mt-5" v-show="!show && ReportList.length > 0">
       <b-table
         striped
+        bordered
         :fields="deliveryReportTableFields"
         :items="ReportList"
       ></b-table>
