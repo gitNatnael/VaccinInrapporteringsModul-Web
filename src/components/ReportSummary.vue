@@ -35,11 +35,11 @@
     <div class="summary-report">
       <!-- Delivery table -->
       <b-table
-        v-show="ReportList.length > 0 && showDeliveryReports"
+        v-show="DeliveryReportList.length > 0 && showDeliveryReports"
         striped
         bordered
         :fields="DeliveryReportTableFields"
-        :items="ReportList"
+        :items="DeliveryReportList"
         caption-top
       >
         <template #table-caption
@@ -103,11 +103,12 @@ export default {
   }),
   computed: {
     ...mapState(["vaccinesDeliverReport", "inventoryReport", "orderReport"]),
-    ReportList() {
+    DeliveryReportList() {
       const reports = [];
       this.vaccinesDeliverReport.forEach((r) => {
         reports.push(deliveryReportTableObj(r));
       });
+
       if (this.search.length === 0) return reports;
       else
         return reports.filter((x) =>
@@ -119,6 +120,7 @@ export default {
       this.inventoryReport.forEach((r) => {
         reports.push(InventoryReportTableObj(r));
       });
+
       if (this.search.length === 0) return reports;
       else
         return reports.filter((x) =>
@@ -133,7 +135,7 @@ export default {
       if (this.search.length === 0) return reports;
       else
         return reports.filter((x) =>
-          x.healthcareProvider.includes(this.search)
+          x.healthCareProvider.includes(this.search)
         );
     },
     DeliveryReportTableFields() {
