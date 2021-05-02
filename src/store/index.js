@@ -12,7 +12,8 @@ export default new Vuex.Store({
     vaccinesDeliverReport: [],
     vaccineSuppliers: [],
     healthCareProvider: [],
-    inventoryReport: []
+    inventoryReport: [],
+    orderReport: []
   },
   getters: {
     suppliersList: state => state.vaccineSuppliers.map(x => x.name),
@@ -26,9 +27,18 @@ export default new Vuex.Store({
     SET_HEALTHCARE_PROVIDER: (state, healthCareProvider) =>
       (state.healthCareProvider = healthCareProvider),
     SET_INVENTORY_REPORT: (state, inventoryReport) =>
-      (state.inventoryReport = inventoryReport)
+      (state.inventoryReport = inventoryReport),
+    SET_ORDER_REPORT: (state, orderReport) => (state.orderReport = orderReport)
   },
   actions: {
+    async fetchOrderReportList({ commit }) {
+      await axios
+        .get(config.resource_api_order, headers)
+        .then(res => {
+          commit("SET_ORDER_REPORT", res.data);
+        })
+        .catch(console.error());
+    },
     async fetchInventoryReportList({ commit }) {
       await axios
         .get(config.resource_api_inventory, headers)

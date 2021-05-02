@@ -51,7 +51,33 @@ const INVENTORY_REPORT_FIELDS = [
     label: "kvantitet dos"
   }
 ];
+const ORDER_REPORT_FIELDS = [
+  {
+    key: "healthCareProvider",
+    label: "Vårdgivare Namn",
+    sortable: true
+  },
+  {
+    key: "orderDate",
+    label: "Beställningsdatum"
+  },
+  {
+    key: "deliveryDate",
+    label: "Önskat lev datum ",
+    sortable: true
+  },
+
+  {
+    key: "quantityDos",
+    label: "kvantitet dos"
+  },
+  {
+    key: "gln",
+    label: "GLN-mottagre"
+  }
+];
 module.exports = {
   DELIVERY_REPORT_FIELDS,
-  INVENTORY_REPORT_FIELDS
+  INVENTORY_REPORT_FIELDS,
+  ORDER_REPORT_FIELDS
 };

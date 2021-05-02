@@ -18,6 +18,7 @@
             <b-form-input
               id="delivery-date"
               v-model="deliverReportData.deliveryDate"
+              required
               type="date"
             />
           </b-form-group>
@@ -31,6 +32,7 @@
             <b-form-datepicker
               id="scheduled-date"
               v-model="deliverReportData.scheduledDeliveryDate"
+              required
               today-button
               reset-button
               close-button
@@ -46,6 +48,7 @@
           >
             <b-form-select
               v-model="deliverReportData.vaccineSupplier"
+              required
               :options="suppliers"
             ></b-form-select>
           </b-form-group>
@@ -57,8 +60,9 @@
             label-align-sm="right"
           >
             <b-form-input
-              id="nquantity"
+              id="quantity"
               v-model="deliverReportData.quantityVial"
+              required
               min="0"
               type="number"
             />
@@ -113,7 +117,7 @@ import { deliveryReportTableObj } from "../Utils/functions.js";
 import { DELIVERY_REPORT_FIELDS } from "../Utils/constant.js";
 import config from "../../config/default";
 export default {
-  name: "ReportSummary",
+  name: "DeliveryReport",
   data: () => ({
     deliverReportData: {
       deliveryDate: "",
@@ -190,7 +194,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .card {
   min-width: 85%;
 }

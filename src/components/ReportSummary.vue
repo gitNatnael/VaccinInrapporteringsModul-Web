@@ -6,6 +6,7 @@
         <input type="text" id="search" v-model="search" />
       </b-row>
       <b-row>
+        <!-- Delivery table -->
         <b-form-checkbox
           id="showDeliveryReports"
           class="ml-3"
@@ -13,6 +14,7 @@
         >
           Inleverans
         </b-form-checkbox>
+        <!-- Inventory table -->
         <b-form-checkbox
           id="showInventoryReports"
           class="ml-3"
@@ -20,9 +22,18 @@
         >
           Lagersaldo
         </b-form-checkbox>
+        <!-- Order table -->
+        <b-form-checkbox
+          id="showOrderReport"
+          class="ml-3"
+          v-model="showOrderReport"
+        >
+          Beställning
+        </b-form-checkbox>
       </b-row>
     </b-jumbotron>
     <div class="summary-report">
+      <!-- Delivery table -->
       <b-table
         v-show="ReportList.length > 0 && showDeliveryReports"
         striped
@@ -35,6 +46,7 @@
           ><span class="caption-font">Inleverans rapport</span></template
         >
       </b-table>
+      <!-- Inventory table -->
       <b-table
         v-show="InventoryReportList.length > 0 && showInventoryReports"
         striped
@@ -49,6 +61,21 @@
           </span></template
         >
       </b-table>
+      <!-- Order table -->
+      <b-table
+        v-show="OrderReportList.length > 0 && showOrderReport"
+        striped
+        bordered
+        :fields="OrderReportTableFields"
+        :items="OrderReportList"
+        caption-top
+      >
+        <template #table-caption
+          ><span class="caption-font">
+            Beställning
+          </span></template
+        >
+      </b-table>
     </div>
   </div>
 </template>
@@ -58,10 +85,12 @@ import { mapState } from "vuex";
 import {
   deliveryReportTableObj,
   InventoryReportTableObj,
+  OrderReportTableObj,
 } from "../Utils/functions.js";
 import {
   DELIVERY_REPORT_FIELDS,
   INVENTORY_REPORT_FIELDS,
+  ORDER_REPORT_FIELDS,
 } from "../Utils/constant.js";
 
 export default {
@@ -70,12 +99,10 @@ export default {
     search: "",
     showDeliveryReports: false,
     showInventoryReports: false,
-    showCapacityReports: false,
-    showConsumptionsReport: false,
     showOrderReport: false,
   }),
   computed: {
-    ...mapState(["vaccinesDeliverReport", "inventoryReport"]),
+    ...mapState(["vaccinesDeliverReport", "inventoryReport", "orderReport"]),
     ReportList() {
       const reports = [];
       this.vaccinesDeliverReport.forEach((r) => {
@@ -98,11 +125,25 @@ export default {
           x.healthcareProvider.includes(this.search)
         );
     },
+    OrderReportList() {
+      const reports = [];
+      this.orderReport.forEach((r) => {
+        reports.push(OrderReportTableObj(r));
+      });
+      if (this.search.length === 0) return reports;
+      else
+        return reports.filter((x) =>
+          x.healthcareProvider.includes(this.search)
+        );
+    },
     DeliveryReportTableFields() {
       return DELIVERY_REPORT_FIELDS.filter((f) => f.key !== "gln");
     },
     InventoryReportTableFields() {
       return INVENTORY_REPORT_FIELDS.filter((f) => f.key !== "gln");
+    },
+    OrderReportTableFields() {
+      return ORDER_REPORT_FIELDS.filter((f) => f.key !== "gln");
     },
   },
 };

@@ -4,9 +4,9 @@
       <b-tab title="Översikt" active><ReportSummary /> </b-tab>
       <b-tab title="Inleverans"><DeliveryReport /></b-tab>
       <b-tab title="Lagersaldo"><InventoryReport /> </b-tab>
+      <b-tab title="Beställning"><Order /></b-tab>
       <b-tab title="Förbrukning"><Consumption /></b-tab>
       <b-tab title="Kapacitet"><Capacity /> </b-tab>
-      <b-tab title="Beställning"><Order /></b-tab>
     </b-tabs>
   </div>
 </template>
@@ -35,6 +35,7 @@ export default {
     this.fetchHealthcareProviders();
     this.fetchInventoryReportList();
     this.fetchVaccineSuppliersList();
+    this.fetchOrderReportList();
   },
   methods: {
     ...mapActions([
@@ -42,6 +43,7 @@ export default {
       "fetchHealthcareProviders",
       "fetchInventoryReportList",
       "fetchVaccineSuppliersList",
+      "fetchOrderReportList",
     ]),
   },
 };

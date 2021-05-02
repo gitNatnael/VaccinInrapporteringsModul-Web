@@ -18,6 +18,7 @@
             <b-form-input
               id="date"
               v-model="inventoryReportData.InventoryUpdateDate"
+              required
               type="date"
             />
           </b-form-group>
@@ -31,6 +32,7 @@
             <b-form-select
               id="VaccineSupplier"
               v-model="inventoryReportData.VaccineSupplier"
+              required
               :options="suppliers"
             ></b-form-select>
           </b-form-group>
@@ -44,6 +46,7 @@
             <b-form-input
               id="quantity"
               v-model="inventoryReportData.QuantityVial"
+              required
               type="number"
               min="0"
             />
@@ -57,6 +60,7 @@
             <b-form-input
               id="QuantityDose"
               v-model="inventoryReportData.QuantityDose"
+              required
               min="0"
               type="number"
             />
@@ -104,7 +108,7 @@ export default {
   name: "ReportSummary",
   data: () => ({
     inventoryReportData: {
-      inventoryReportData: "",
+      InventoryUpdateDate: "",
       VaccineSupplier: "",
       QuantityVial: "",
       QuantityDose: "",
@@ -149,13 +153,13 @@ export default {
           if (res.status === 201) {
             this.cleanFieldsInput();
             this.fetchInventoryReportList();
-          } else console.log("i am status failed");
-          console.log(
-            `res.status: ${res.status}, res.statusText: ${res.statusText}`
-          );
+          } else {
+            console.log(
+              `res.status: ${res.status}, res.statusText: ${res.statusText}`
+            );
+          }
         })
         .catch((error) => {
-          console.log("i am catch");
           console.log(`Error: ${error}`);
         });
     },

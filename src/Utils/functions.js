@@ -19,7 +19,17 @@ const InventoryReportTableObj = obj => {
   };
 };
 
+const OrderReportTableObj = obj => {
+  return {
+    orderDate: new Date(obj.orderDate).toLocaleDateString(),
+    deliveryDate: new Date(obj.deliveryDate).toLocaleDateString(),
+    quantityDos: obj.quantityDos,
+    gln: obj.gln ? obj.gln : "-",
+    healthCareProvider: obj.healthCareProvider
+  };
+};
 module.exports = {
   deliveryReportTableObj,
-  InventoryReportTableObj
+  InventoryReportTableObj,
+  OrderReportTableObj
 };
