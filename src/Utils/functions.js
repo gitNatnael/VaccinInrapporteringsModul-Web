@@ -11,7 +11,7 @@ const deliveryReportTableObj = obj => {
 
 const InventoryReportTableObj = obj => {
   return {
-    InventoryUpdateDate: new Date(obj.InventoryUpdateDate).toLocaleDateString(),
+    InventoryUpdateDate: new Date(obj.inventoryUpdateDate).toLocaleDateString(),
     VaccineSupplier: obj.vaccineSupplier,
     QuantityVial: obj.quantityVial,
     QuantityDose: obj.quantityDose,

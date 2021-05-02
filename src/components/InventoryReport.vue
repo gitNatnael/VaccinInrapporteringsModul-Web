@@ -70,6 +70,7 @@
             <b-form-select
               id="healthCareProvider"
               v-model="inventoryReportData.healthCareProvider"
+              required
               :options="healtCareList"
             ></b-form-select>
           </b-form-group>

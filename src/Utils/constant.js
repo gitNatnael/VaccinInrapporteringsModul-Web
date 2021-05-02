@@ -1,7 +1,13 @@
 const DELIVERY_REPORT_FIELDS = [
   {
+    key: "healthcareProvider",
+    label: "Vårdgivare Namn",
+    sortable: true
+  },
+  {
     key: "deliveryDate",
-    label: "Leverans Datum"
+    label: "Leverans Datum",
+    sortable: true
   },
   {
     key: "scheduledDate",
@@ -9,7 +15,8 @@ const DELIVERY_REPORT_FIELDS = [
   },
   {
     key: "supplier",
-    label: "Vaccineleverantör "
+    label: "Vaccineleverantör ",
+    sortable: true
   },
   {
     key: "quantity",
@@ -18,20 +25,22 @@ const DELIVERY_REPORT_FIELDS = [
   {
     key: "gln",
     label: "GLN-mottagre"
-  },
-  {
-    key: "healthcareProvider",
-    label: "Vårdgivare Namn"
   }
 ];
 const INVENTORY_REPORT_FIELDS = [
+  {
+    key: "healthcareProvider",
+    label: "Vårdgivare Namn",
+    sortable: true
+  },
   {
     key: "InventoryUpdateDate",
     label: "Datum"
   },
   {
     key: "VaccineSupplier",
-    label: "Vaccineleverantör "
+    label: "Vaccineleverantör ",
+    sortable: true
   },
   {
     key: "QuantityVial",
@@ -40,10 +49,6 @@ const INVENTORY_REPORT_FIELDS = [
   {
     key: "QuantityDose",
     label: "kvantitet dos"
-  },
-  {
-    key: "healthcareProvider",
-    label: "Vårdgivare Namn"
   }
 ];
 module.exports = {

@@ -67,8 +67,6 @@ import {
 export default {
   name: "ReportSummary",
   data: () => ({
-    DeliveryReportTableFields: DELIVERY_REPORT_FIELDS,
-    InventoryReportTableFields: INVENTORY_REPORT_FIELDS,
     search: "",
     showDeliveryReports: false,
     showInventoryReports: false,
@@ -99,6 +97,12 @@ export default {
         return reports.filter((x) =>
           x.healthcareProvider.includes(this.search)
         );
+    },
+    DeliveryReportTableFields() {
+      return DELIVERY_REPORT_FIELDS.filter((f) => f.key !== "gln");
+    },
+    InventoryReportTableFields() {
+      return INVENTORY_REPORT_FIELDS.filter((f) => f.key !== "gln");
     },
   },
 };

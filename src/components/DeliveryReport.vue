@@ -83,6 +83,7 @@
           >
             <b-form-select
               v-model="deliverReportData.healthCareProvider"
+              required
               :options="healtCareList"
             ></b-form-select>
           </b-form-group>
