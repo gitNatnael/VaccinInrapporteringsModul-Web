@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h3>Rapporteras in inleverans</h3>
+    <h4 class="mb-3 mt-5">Inleverans rapport</h4>
     <div class="row m-0" v-if="!show">
       <b-button variant="outline-primary" @click="showForm()"
-        >Skapa report</b-button
+        >Skapa inleverans rapport</b-button
       >
     </div>
     <div class="row m-0" v-if="show">

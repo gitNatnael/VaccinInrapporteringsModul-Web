@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h3>Beställning</h3>
+    <h4 class="mb-3 mt-5">Beställning rapport</h4>
     <div class="row m-0" v-if="!show">
       <b-button variant="outline-primary" @click="showForm()"
-        >Skapa Beställning report</b-button
+        >Skapa Beställning rapport</b-button
       >
     </div>
     <div class="row m-0" v-if="show">
